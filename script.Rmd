@@ -1,0 +1,66 @@
+---
+title: "Trabajo Personal"
+author: "Ines Garcia"
+date: "24/1/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+install.packages("nycflights13")
+library(nycflights13)
+vuelos <- nycflights13::flights
+```
+
+
+### 1.Encuentra todos los vuelos que llegaron más de una hora tarde de lo previsto.
+```{r}
+which(vuelos$arr_delay >= 60)
+
+```
+
+### 2.Encuentra todos los vuelos que volaron hacia San Francisco (aeropuertos SFO y OAK) 
+```{r}
+which(vuelos$dest == "SFO" |vuelos$dest == "OAK" )
+```
+
+
+### 3. Encuentra todos los vuelos operados por United American (UA) o por American Airlines (AA) 
+
+```{r}
+which(vuelos$carrier == "UA"| vuelos$carrier== "AA")
+```
+
+
+### 4.Encuentra todos los vuelos que salieron los meses de primavera (Abril, Mayo y Junio) 
+```{r}
+which(flights$month == 4, 5, 6)
+```
+
+
+### 5. Encuentra todos los vuelos que llegaron más de una hora tarde pero salieron con menos de una hora de retraso. 
+
+```{r}
+which(vuelos$arr_delay >= 60 & vuelos$dep_delay <= 60)
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
