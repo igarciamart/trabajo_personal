@@ -1,8 +1,10 @@
 # trabajo_personal
 Trabajo Personal
-author: Ines Garcia
-date: "24/1/2022"
-output: html_document
+
+### Author: Ines Garcia
+
+### Date: 24/1/2022
+
 ---
 
 ```{r setup, include=FALSE}
