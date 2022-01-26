@@ -1,9 +1,9 @@
 # trabajo_personal
-Trabajo Personal
+## Trabajo Personal
 
-### Author: Ines Garcia
+### Autor: Ines Garcia
 
-### Date: 24/1/2022
+### Día: 24/1/2022
 
 ---
 
