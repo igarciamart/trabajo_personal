@@ -1,6 +1,6 @@
 # trabajo_personal
-title: "Trabajo Personal"
-author: "Ines Garcia"
+Trabajo Personal
+author: Ines Garcia
 date: "24/1/2022"
 output: html_document
 ---
