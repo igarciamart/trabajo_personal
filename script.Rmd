@@ -65,6 +65,7 @@ filter(vuelos, arr_delay <=30 & dep_delay >=60)
 
 ### 7.  Encuentra todos los vuelos que salen entre medianoche y las 7 de la mañana (vuelos nocturnos). 
 ```{r}
+filter(vuelos, dep_time == 0:700)
 
 ```
 
@@ -72,6 +73,8 @@ filter(vuelos, arr_delay <=30 & dep_delay >=60)
 
 ### 8. ¿Cuántos vuelos tienen un valor desconocido de dep_time? 
 ```{r}
+a <- which(is.na(vuelos$dep_time))
+length(a)
 
 ```
 
