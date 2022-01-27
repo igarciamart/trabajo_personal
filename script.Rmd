@@ -22,6 +22,7 @@ vuelos <- nycflights13::flights
 
 filter(vuelos, arr_delay >=60)
 
+
 ```
 
 ### 2.Encuentra todos los vuelos que volaron hacia San Francisco (aeropuertos SFO y OAK) 
@@ -58,7 +59,7 @@ filter(vuelos, arr_delay >= 60 & dep_delay <=60)
 
 ### 6.Encuentra todos los vuelos que salieron con más de una hora de retraso pero consiguieron llegar con menos de 30 minutos de retraso (el avión aceleró en el aire) 
 ```{r}
-
+filter(vuelos, arr_delay <=30 & dep_delay >=60)
 ```
 
 
