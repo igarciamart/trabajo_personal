@@ -83,36 +83,40 @@ length(a)
 ### 9.  ¿Qué variables del dataset contienen valores desconocidos? 
 ```{r}
 
+arrange(vuelos, desc(is.na(tailnum)))
+
 ```
-
-
+Las variables que tienen valores NA son: tailnum, dep_time, de_delay, arr_time, arr_delay y air_time
 
 ### 10. Ordena los vuelos de flights para encontrar los vuelos más retrasados en la salida. ¿Qué vuelos fueron los que salieron los primeros antes de lo previsto? 
 ```{r}
-
+arrange(vuelos, desc(dep_delay))
+arrange(vuelos, dep_delay)
 ```
-
+El vuelo que más temprano salío antes de lo previsto es el que tiene un tailnum de N592JB y salío 43 minutos antes.
+El segundo vuelo que más temprano salío es el que tiene un tailnum de 	N612DL y salío 33 minutos antes.
 
 
 ### 11. Ordena los vuelos de flights para encontrar los vuelos más rápidos. Usa el concepto de rapidez que consideres. 
 ```{r}
-
+vuelos$velocidad <- vuelos$distance/vuelos$air_time
+arrange(vuelos, desc(velocidad))
 ```
 
 
 
 ### 12. ¿Qué vuelos tienen los trayectos más largos? 
 ```{r}
-
+arrange(vuelos, desc(distance))
 ```
-
+El trayecto más largo es el que sale del aeropuerto JFK y aterriza en el aeropuerto HNL, cuya distancia total es de 4983 millas.
 
 
 ### 13. ¿Qué vuelos tienen los trayectos más cortos? 
 ```{r}
-
+arrange(vuelos, distance)
 ```
-
+El trayecto más corto es de 80 millas, sale del aeropuerto EWR y aterriza en PHL.
 
 
 ### 14. El dataset de vuelos tiene dos variables, dep_time y sched_dep_time muy útiles pero difíciles de usar por cómo vienen dadas al no ser variables continuas. Fíjate que cuando pone 559, se refiere a que el vuelo salió a las 5:59... Convierte este dato en otro más útil que represente el número de minutos que pasan desde media noche.
