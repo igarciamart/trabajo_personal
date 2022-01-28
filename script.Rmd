@@ -116,12 +116,12 @@ El trayecto más largo es el que sale del aeropuerto JFK y aterriza en el aeropu
 ```{r}
 arrange(vuelos, distance)
 ```
-El trayecto más corto es de 80 millas, sale del aeropuerto EWR y aterriza en PHL.
+El trayecto más corto es de 80 millas, sale del aeropuerto EWR y aterriza en PHL, el primer vuelo cuyo trayecto es de 17 millas corresponde al de un vuelo cancelado, es por este motivo que no lo tengo en cuenta como trayecto más corto.
 
 
 ### 14. El dataset de vuelos tiene dos variables, dep_time y sched_dep_time muy útiles pero difíciles de usar por cómo vienen dadas al no ser variables continuas. Fíjate que cuando pone 559, se refiere a que el vuelo salió a las 5:59... Convierte este dato en otro más útil que represente el número de minutos que pasan desde media noche.
 ```{r}
-
+vuelos_min <-mutate(vuelos, salida_programada_min = (sched_dep_time %/% 100 * 60 + sched_dep_time %% 100) %% 1440, salida_min = (dep_time %/% 100 * 60 + dep_time %% 100) %% 1440)
 ```
 
 
