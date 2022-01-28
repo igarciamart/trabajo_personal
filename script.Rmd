@@ -128,10 +128,11 @@ vuelos_min <-mutate(vuelos, salida_programada_min = (sched_dep_time %/% 100 * 60
 
 ### 15. Compara los valores de dep_time, sched_dep_time y dep_delay. ¿Cómo deberían relacionarse estos tres números? Compruébalo y haz las correcciones numéricas que necesitas. 
 ```{r}
-
+vuelos_min$comprobacion1 <- vuelos_min$sched_dep_time + vuelos_min$dep_delay
+vuelos_min$comprobacion2 <- vuelos_min$salida_programada_min + vuelos_min$dep_delay
 ```
-
-
+La relación existente entre estas variable debería ser que la suma de sched_dep_time y dep_delay es igual al valor de dep_time. El problema es que las unidades de estas variables no coinciden, es por este motivo que utilizariamos las nuevas variables en min creadas en el ejercicio 14.
+Cómo podemos ver en las nuevas columnas creadas, la de comprobacion1 sería errónea puesto que los valores no coinciden con salida_min, ya que las unidades no son adecuadas. Sin embargo, los resultados obtenidos en la columna comprobacion2 si coincide con la de salida_min.
 
 ### 16. Investiga si existe algún patrón del número de vuelos que se cancelan cada día.
 ```{r}
