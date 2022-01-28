@@ -166,12 +166,38 @@ Observando la gráfica obtenida no podemos llegar a una conclusión clara de que
 
 ### 18. Investiga si la proporción de vuelos cancelados está relacionada con el retraso promedio por aeropuerto en los vuelos. 
 ```{r}
-proporcion_aeropuerto <- vuelos %>%
+LGA <- filter(vuelos, origin=="LGA")
+
+Prop_retraso_cancel_LGA <-  LGA %>%
   mutate(cancelados = (is.na(tailnum))) %>%
-  group_by(origin) %>%
-  summarise(proporcion_cancelados = mean(cancelados),media_dep_delay = mean(dep_delay, na.rm = TRUE),media_arr_delay = mean(arr_delay, na.rm = TRUE)) %>% ungroup()
-ggplot(proporcion_aeropuerto) +
-  geom_line(aes(x = media_dep_delay, y = proporcion_cancelados, col= proporcion_cancelados))
+  group_by(origin, dest) %>%
+  summarise(prop_cancelados = mean(cancelados),med_dep_delay = mean(dep_delay, na.rm = TRUE),med_arr_delay = mean(arr_delay, na.rm = TRUE)) %>% ungroup()
+
+ggplot(Prop_retraso_cancel_LGA) +
+  geom_line(aes(x = med_dep_delay, y = prop_cancelados, col= prop_cancelados))
+
+```
+```{r}
+EWR <- filter(vuelos, origin=="EWR")
+
+Prop_retraso_cancel_EWR <- EWR %>%
+  mutate(cancelados = (is.na(tailnum))) %>%
+  group_by(origin, dest) %>%
+  summarise(prop_cancelados = mean(cancelados),med_dep_delay = mean(dep_delay, na.rm = TRUE),med_arr_delay = mean(arr_delay, na.rm = TRUE)) %>% ungroup()
+
+ggplot(Prop_retraso_cancel_EWR) +
+  geom_line(aes(x = med_dep_delay, y = prop_cancelados, col= prop_cancelados))
+```
+```{r}
+JFK <- filter(vuelos, origin=="JFK")
+
+Prop_retraso_cancel_JFK <- JFK %>%
+  mutate(cancelados = (is.na(tailnum))) %>%
+  group_by(origin, dest) %>%
+  summarise(prop_cancelados = mean(cancelados),med_dep_delay = mean(dep_delay, na.rm = TRUE),med_arr_delay = mean(arr_delay, na.rm = TRUE)) %>% ungroup()
+
+ggplot(Prop_retraso_cancel_JFK) +
+  geom_line(aes(x = med_dep_delay, y = prop_cancelados, col= prop_cancelados))
 ```
 
 ### 19. ¿Qué compañía aérea sufre los peores retrasos? 
@@ -259,20 +285,25 @@ vuelos %>%
 
 ### 24. Es hora de aplicar todo lo que hemos aprendido para visualizar mejor los tiempos de salida para vuelos cancelados vs los no cancelados. Recuerda bien qué tipo de dato tenemos en cada caso. ¿Qué deduces acerca de los retrasos según la hora del día a la que está programada el vuelo de salida? 
 ```{r}
-
+vuelos_dt %>%
+  mutate(sched_dep_hour = hour(sched_dep_time)) %>%
+  group_by(sched_dep_hour) %>%
+  summarise(dep_delay = mean(dep_delay)) %>%
+  ggplot(aes(y = dep_delay, x = sched_dep_hour)) +
+  geom_point() +
+  geom_smooth()
 ```
-
+Cómo podemos observar en el gráfico el retrado en la salida de los vuelos aumenta a medida que va pasando el día alcanzando su punto máximo aproximadamente entre las 6 y 8 de la tarde. Sin embargo, podemos apreciar como durante la madrugada los retrasos son menores.
 
 
 ### 25. Subir la carpeta a github y facilitar la url. 
-```{r}
-
-```
+El url de mi carpeta de github es: https://github.com/igarciamart/trabajo_personal.git
 
 
 
 ### 26. Al finalizar el documento agrega el comando sessionInfo() 
 ```{r}
+sessionInfo()
 
 ```
 
